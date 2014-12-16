@@ -1,0 +1,70 @@
+{%extends "/layouts/base.html"%}
+{%block menus%}
+<ul class="nav navbar-nav navbar-right">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+	  <label>Themes</label>
+	  <select class="form-control" onchange="init('midnight')">
+	    <option value="default">Default</option>
+	    <option value="monaki">Monaki</option>
+	    <option value="midnight">Midnight</option>
+	  </select>
+	  <input type="submit" style="display: none;" id="submit">
+      </li>
+    </ul>
+  </li>
+</ul>
+{%endblock%}
+
+{%block content%}
+<textarea id="firepad-container" class="CodeMirror cm-s-midnight "></textarea>
+{%endblock%}
+{%block script%}
+<script>
+   function init(theme) {
+      var firepadRef = getRef();
+      var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
+        lineNumbers: true,
+        theme : theme,
+        keymap: 'emacs',
+        mode: 'python'
+      });
+      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+        defaultText: '//Welcome to Code-Share. You may code and share'
+      });
+    }
+
+    function chmode(mode){
+      
+    }
+
+    function chtheme(theme){
+      
+    }
+
+    function chkeymap(keymap){
+      
+    }
+
+
+    // Helper to get hash from end of URL or generate a random one.
+    function getRef() {
+      var ref = new Firebase('https://codex-for-all.firebaseio.com');
+    
+      var hash = window.location.hash.replace(/#/g, '');
+      if (hash) {
+        ref = ref.child(hash);
+      } else {
+        ref = ref.push(); // generate unique location.
+        window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
+      }
+      if (typeof console !== 'undefined')
+        console.log('Firebase data: ', ref.toString());
+      return ref;
+    }
+    init('default');
+</script>
+
+{%endblock%}

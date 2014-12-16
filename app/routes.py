@@ -4,7 +4,8 @@ from ferris.core import routing, plugins
 routing.auto_route()
 
 # Default root route
-routing.default_root()
+routing.redirect("/",  to="/code_share/index")
+
 
 
 # Plugins
