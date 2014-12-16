@@ -1,0 +1,179 @@
+.form-wrap {
+    max-width: 750px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.box {
+    background: none repeat scroll 0 0 white;
+    max-width: 750px;
+    border: 1px solid #DBDEE3;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-weight: normal;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.float-none {
+    float: none !important;
+}
+
+.margin-auto {
+    margin: 0 auto !important;
+}
+
+.btn-green {
+    color: #FFF;
+    background-color: #23A23D;
+    border-color: #398439;
+}
+
+.btn-gray {
+    background-color: #333 !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-white {
+    color: #FFF !important;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.text-bold {
+    text-transform: bold !important;
+}
+
+.font17 {
+    font-size: 17px!important;
+    line-height: 19px!important;
+}
+
+.font48 {
+    font-size: 48px;
+    margin: 0 0 25px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 60px;
+}
+
+.clearfix {
+    clear: both !important;
+}
+
+.bg-blue {
+    background: #085394 !important;
+}
+
+.bg-gray {
+    background: #3c4040 !important;
+}
+
+.padLR-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.padLR-10 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.padLR-20 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.padLR-50 {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.padTB-5 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.padTB-10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.padTB-20 {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.mr-5 {
+    margin-right: 5px !important;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.mt-50 {
+    margin-top: 50px !important;
+}
+
+.mt-70 {
+    margin-top: 70px !important;
+}
+
+.settings {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    color: #eee;
+}
+
+.settings ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 2px;
+    width: 250px;
+    padding: 20px;
+    z-index: 999;
+    background: #333;
+    border-radius: 5px 0 5px 5px;
+}
