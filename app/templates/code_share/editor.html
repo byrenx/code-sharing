@@ -1,31 +1,4 @@
 {%extends "/layouts/base.html"%}
-<<<<<<< HEAD
-{%block menus%}
-<ul class="nav navbar-nav navbar-right">
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li>
-	<label>Themes</label>
-	<select class="form-control" onchange="init('midnight');">
-	  <option value="default">Default</option>
-	  <option value="monaki">Monaki</option>
-	  <option value="midnight">Midnight</option>
-	</select>
-	<input type="submit" style="display: none;" id="submit">
-      </li>
-    </ul>
-  </li>
-</ul>
-{%endblock%}
-
-{%block content%}
-<div id="firepad-container" class="CodeMirror cm-s-midnight"></div>
-{%endblock%}
-{%block script%}
-<script>
-        
-=======
 {%block content%}
 <nav class="settings">
   <ul>
@@ -51,7 +24,7 @@
   </ul>
 </nav>
 
-<textarea id="firepad-container" class="CodeMirror cm-s-midnight "></textarea>
+<div id="firepad-container" class="CodeMirror cm-s-midnight"></div>
 {%endblock%}
 {%block script%}
 <script>
@@ -61,9 +34,7 @@
       });
     });
 
->>>>>>> 16407696cd5c86baf5d708a1f3166b58e6267733
    function init(theme) {
-   alert(theme);
       var firepadRef = getRef();
       var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
         lineNumbers: true,
