@@ -9,7 +9,7 @@ from apiclient.discovery import build
 import re
 
 # firebase libraries
-from plugins.firebase_rest import FirebaseRest
+from packages.firebase_rest import FirebaseRest
 #from firebase import firebase
 
 import datetime
