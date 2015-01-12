@@ -1,4 +1,4 @@
-from ferris import Controller, route
+from ferris import Controller, route, route_with
 from google.appengine.api import mail
 # google app engine oauth2 API
 from ferris.components import csrf
@@ -16,7 +16,6 @@ class CodeShare(Controller):
     class Meta:
         prefixes = ('api',)
         components = (csrf.CSRF,)
-        oauth_scopes = ['https://www.googleapis.com/auth/userinfo.profile']
 
     def email_check(self, email):
         match = re.search(
@@ -29,11 +28,11 @@ class CodeShare(Controller):
         else:
             return False
 
-    @route
+    @route_with("/")
     def index(self):
         pass
 
-    @route
+    @route_with("/codex")
     def editor(self):
         pass
 
