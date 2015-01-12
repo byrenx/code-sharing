@@ -62,7 +62,9 @@ settings['upload'] = {
 settings['firebase'] = {
 
     #codex-for-all local
-    'PROD' : {"url" : "https://codex-for-all.firebaseio.com/", "secret": "X0F6pE1POmwYglMGA94NkPUERlTkHWQIu7ZOhbWl"}
+    'PROD' : {"url" : "https://codex-for-all.firebaseio.com/", "secret": "X0F6pE1POmwYglMGA94NkPUERlTkHWQIu7ZOhbWl"},
+    'local' : {"url" : "https://codex-for-all.firebaseio.com/", "secret": "X0F6pE1POmwYglMGA94NkPUERlTkHWQIu7ZOhbWl"}
+
 
 }
 
