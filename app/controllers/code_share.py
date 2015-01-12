@@ -19,7 +19,10 @@ class CodeShare(Controller):
         oauth_scopes = ['https://www.googleapis.com/auth/userinfo.profile']
 
     def email_check(self, email):
-        match = re.search(r'[\w+-]+(?:\.[\w+-]+)*@[\w+-]+(?:\.[\w+-]+)*(?:\.[ a - z A - Z ]{2,4})', email)
+        match = re.search(
+            r'[\w+-]+(?:\.[\w+-]+)*@[\w+-]+(?:\.[\w+-]+)*(?:\.[a-zA-Z]{2,4})',
+            email
+        )
 
         if match:
             return True
@@ -37,7 +40,6 @@ class CodeShare(Controller):
     # checks if data is 30 days old
     def check_date(self, date):
         # date should be timestamp float
-
         if date is not None:
             # get current date
             curdate = datetime.datetime.now()
@@ -77,13 +79,18 @@ class CodeShare(Controller):
 
     # email composer for sending / sharing codex
     def compose(self):
-        params = {'email': self.request.get('email'), 'url': self.request.get('url')}
+        params = {
+            'email': self.request.get('email'),
+            'url': self.request.get('url')
+        }
         email = params['email']
         if self.email_check(email):
-            mail.send_mail(sender="codex.share@gmail.com",
+            mail.send_mail(
+                sender="codex.share@gmail.com",
                 to=params['email'].lower(),
                 subject="Codex shared to you",
-                body=params['url'])
+                body=params['url']
+            )
             self.context['data'] = params['email']
             return 200
         else:
