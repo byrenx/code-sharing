@@ -1,5 +1,4 @@
 import logging
-import inspect
 
 
 def results_to_dict(cls, items, limit=None):

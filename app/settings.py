@@ -9,10 +9,11 @@ You can use the settings API via:
 
     mysettings = settings.get("mysettings")
 
-The settings API will load the "settings" dictionary from this file. Anything else
-will be ignored.
+The settings API will load the "settings" dictionary from this file.
+Anything else will be ignored.
 
-Optionally, you may enable the dynamic settings plugin at the bottom of this file.
+Optionally,
+you may enable the dynamic settings plugin at the bottom of this file.
 """
 
 settings = {}
