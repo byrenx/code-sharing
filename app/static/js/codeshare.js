@@ -17,7 +17,7 @@ $(document).click(function() {
 var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
     lineNumbers: true,
     theme : '3024-day',
-    keymap: 'sublime',
+    keyMap: 'sublime',
     mode: 'python',
     crudeMeasuringFrom: 100
 });
@@ -90,16 +90,14 @@ function test() {
 function firebasemode() {
     var hash = window.location.hash.replace(/#/g, '');
     var connect = new Firebase('https://codex-for-all.firebaseio.com' + hash + '/settings');
-
-    connect.on("child_changed", function(snapshot) {
-    	var changedPost = snapshot.val();
-    	console.log("src:" + changedPost.src);
-    	console.log("value:" + changedPost.value);
-    	var c = changedPost;
-
-        // load source file
-    	loadCSSJSFile(changedPost, "js");
-    	codeMirror.setOption("mode", changedPost);
+    
+    connect.on("value", function(snapshot) {
+	var changedPost = snapshot.val();
+	// console.log("src:" + changedPost.src);
+	// console.log("value:" + changedPost.value);
+	// var c = changedPost;
+	loadCSSJSFile(changedPost.src, "js");
+	codeMirror.setOption("mode", changedPost.value);
 
     });
 
