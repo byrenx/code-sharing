@@ -105,7 +105,7 @@ function changeTheme(obj) {
     var src = obj.value;
     var name = obj.options[obj.selectedIndex].text;
     // load the source file
-    loadCSSJSFile(src, "css");
+    checkloadjscssfile(src, "css");
     codeMirror.setOption("theme", name);
 }
 
@@ -124,7 +124,7 @@ function changeMode(obj) {
     });
 
     // load the source file
-    loadCSSJSFile(src, "js");
+    checkloadjscssfile(src, "js");
     codeMirror.setOption("mode", value);
 }
 
@@ -134,7 +134,7 @@ function chKeyMap(obj) {
     var keymap = obj.options[obj.selectedIndex].text;
 
     // load the source file
-    loadCSSJSFile(src, "js");
+    checkloadjscssfile(src, "js");
     codeMirror.setOption("keyMap", keymap);
 }
 
