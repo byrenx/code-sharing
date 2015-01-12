@@ -90,6 +90,42 @@ codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, 
     ];
     $scope.default_keymap = $scope.keymaps[0];
     
+
+    //change mode, keymaps, themes using ng-click
+    $scope.changeTheme = function(){
+	// load the source file
+	checkloadjscssfile($scope.theme_selected['src'], "css");
+	codeMirror.setOption("theme", $scope.theme_selected['name']);
+    }
+    
+    $scope.changeMode = function(){
+	// load the source file
+	var hash = window.location.hash.replace(/#/g, '');
+	var value_n_src = new String($scope.default_mode['src']).split(",");
+	var value = value_n_src[0];
+	var src = value_n_src[1];
+	
+	// connect to firebase
+	var connect = new Firebase('https://codex-for-all.firebaseio.com'+hash);
+	userRef = connect.child("settings");
+	userRef.set({
+    	    value: value,
+    	    src: src
+	});
+
+	// load the source file
+	checkloadjscssfile(src, "js");
+	codeMirror.setOption("mode", value);
+	
+    }
+
+    $scope.changeKey = function(){
+
+	checkloadjscssfile($scope.default_keymap['src'], "js");
+	codeMirror.setOption("keyMap", $scope.default_keymap['name']);
+    }
+
+    
 });
 
 
@@ -100,45 +136,6 @@ codeMirror.setOption("theme", "3024-day");
 // init mode
 loadCSSJSFile("//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/python/python.min.js", "js");
 codeMirror.setOption("mode", "python");
-
-
-/* Editor settings function */
-function changeTheme(obj) {
-    var src = obj.value;
-    var name = obj.options[obj.selectedIndex].text;
-    // load the source file
-    checkloadjscssfile(src, "css");
-    codeMirror.setOption("theme", name);
-}
-
-function changeMode(obj) {
-    var hash = window.location.hash.replace(/#/g, '');
-    var value_n_src = new String(obj.value).split(",");
-    var value = value_n_src[0];
-    var src = value_n_src[1];
-
-    // connect to firebase
-    var connect = new Firebase('https://codex-for-all.firebaseio.com'+hash);
-    userRef = connect.child("settings");
-    userRef.set({
-    	value: value,
-    	src: src
-    });
-
-    // load the source file
-    checkloadjscssfile(src, "js");
-    codeMirror.setOption("mode", value);
-}
-
-
-function chKeyMap(obj) {
-    var src = obj.value;
-    var keymap = obj.options[obj.selectedIndex].text;
-
-    // load the source file
-    checkloadjscssfile(src, "js");
-    codeMirror.setOption("keyMap", keymap);
-}
 
 // For Tooltips
 $(function () {
