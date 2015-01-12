@@ -23,7 +23,7 @@
             </option>
           </select>
           <label>Modes</label>
-          <select class="form-control" onchange="changeMode(this)">
+          <select id="id_modeselect" class="form-control" onchange="changeMode(this)">
             <option ng-repeat="mode in modes" value="{%raw%}{{mode.value}},{{mode.src}}{%endraw%}">
               {%raw%}{{mode.name}}{%endraw%}
             </option>
