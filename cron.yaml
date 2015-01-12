@@ -1,0 +1,4 @@
+cron:
+- description: daily maintenance job
+  url: '/code_share/getFire'
+  schedule: every 2 minutes
