@@ -17,23 +17,11 @@
       <div class="dropdown" style="display: none; position: absolute;" ng-controller="SettingsController">
         <div class="success-message text-center text-bold"><span ng-bind="response"></span></div>
           <label>Themes</label>
-          <select id="themeselect" class="form-control" onchange="changeTheme(this)">
-            <option ng-repeat="theme in themes" value="{%raw%}{{theme.src}}{%endraw%}">
-              {%raw%}{{theme.name}}{%endraw%}
-            </option>
-          </select>
+          <select id="themeselect" class="form-control" onchange="changeTheme(this)" ng-model="theme_selected" ng-options="theme.name for theme in themes track by theme.src"></select>
           <label>Modes</label>
-          <select id="id_modeselect" class="form-control" onchange="changeMode(this)">
-            <option ng-repeat="mode in modes" value="{%raw%}{{mode.value}},{{mode.src}}{%endraw%}">
-              {%raw%}{{mode.name}}{%endraw%}
-            </option>
-          </select>
+          <select id="id_modeselect" class="form-control" onchange="changeMode(this)" ng-model="default_mode" ng-options="mode.name for mode in modes track by mode.src"></select>
           <label>KeyMap</label>
-          <select class="form-control" onchange="chKeyMap(this)">
-            <option ng-repeat="key in keymaps" value="{%raw%}{{key.src}}{%endraw%}">
-              {%raw%}{{key.name}}{%endraw%}
-            </option>
-          </select>
+          <select class="form-control" onchange="chKeyMap(this)" ng-model="default_keymap" ng-options="keymap.name for keymap in keymaps track by keymap.src"></select>
           <form ng-submit="compose()">
             {{csrf}}
             <label>Share this code to:</label>

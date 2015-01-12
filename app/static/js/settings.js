@@ -73,14 +73,14 @@ codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, 
 
     // Preload modes
     $scope.modes = [
-        { value:'text/x-python', name:'Python', src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/python/python.min.js"},
-        { value:'application/javascript', name:'Javascript', src: "https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/javascript/javascript.js"},
-        { value:'text/x-yaml', name:'YAML', src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/yaml/yaml.min.js"},
-        { value:'text/css', name:'CSS', src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/css/css.min.js"},
-        { value:'text/html', name:'HTML', src:"//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/htmlmixed/htmlmixed.min.js"}
+        { name:'Python', src: "text/x-python,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/python/python.min.js"},
+        { name:'Javascript', src: "application/javascript,https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/javascript/javascript.js"},
+        { name:'YAML', src: "text/x-yaml,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/yaml/yaml.min.js"},
+        { name:'CSS', src: "text/css,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/css/css.min.js"},
+        { name:'HTML', src:"text/html,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/htmlmixed/htmlmixed.min.js"}
     ];
 
-    $scope.myMode = $scope.modes[1];
+    $scope.default_mode = $scope.modes[0];
 
     // Preload keymaps
     $scope.keymaps = [
@@ -88,6 +88,8 @@ codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, 
         {name: "emacs", src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/keymap/emacs.min.js"},
         {name: "vim", src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/keymap/vim.min.js"}
     ];
+    $scope.default_keymap = $scope.keymaps[0];
+    
 });
 
 
