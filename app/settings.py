@@ -37,8 +37,8 @@ settings['app_config'] = {
 settings['oauth2'] = {
     # OAuth2 Configuration should be generated from
     # the google cloud console (Credentials for Web Application)
-    'client_id': None,  # XXXXXXXXXXXXXXX.apps.googleusercontent.com
-    'client_secret': None,
+    'client_id':  None,# '467842535768-oslvhrighj94ku69p6thj62pruqo89l8.apps.googleusercontent.com',  # XXXXXXXXXXXXXXX.apps.googleusercontent.com
+    'client_secret' : None,#'YQnGx6Q3ViEjx49VeKuHi3-B',
     'developer_key': None  # Optional
 }
 
@@ -57,6 +57,18 @@ settings['upload'] = {
     # See here for info: https://developers.google.com/appengine/docs/python/googlecloudstorageclient/activate#Using_the_Default_GCS_Bucket
     'bucket': None
 }
+
+#firebase config
+settings['firebase'] = {
+
+    #codex-for-all local
+    'PROD' : {"url" : "https://codex-for-all.firebaseio.com/", "secret": "X0F6pE1POmwYglMGA94NkPUERlTkHWQIu7ZOhbWl"}
+
+}
+
+
+
+
 
 # Enables or disables app stats.
 # Note that appstats must also be enabled in app.yaml.
