@@ -1,17 +1,9 @@
 {%extends "/layouts/base.html"%}
 {%block content%}
-
-
 <nav class="settings">
   <ul>
     <li class="mb-5">
-      <!-- <button class="btn btn-primary" style="width:50px;"><span class="glyphicon glyphicon-earphone">
-<g:hangout style="width:1%;" render="createhangout"
-	   initial_apps="[{ app_id : '184219133185', start_data : 'dQw4w9WgXcQ', 'app_type': 'ROOM_APP' }]">
-</g:hangout></span></button> -->
       <button class="g-hangout" data-render="createhangout"></button>
-
-
     </li>
     <li class="text-right">
       <a href="/code_share/editor" id="btn_new" target="_blank" rel="nofollow" class="btn btn-lg btn-gray mb-10" data-toggle="tooltip" data-placement="left" title="Create new codex">
@@ -23,39 +15,42 @@
         <i class="glyphicon glyphicon-cog text-white"></i>
       </button>
       <div class="dropdown" style="display: none; position: absolute;" ng-controller="SettingsController">
-	<div class="success-message text-center text-bold"><span ng-bind="response"></span></div>
-	<label>Themes</label>
-	<select id="themeselect" class="form-control" onchange="changeTheme(this)">
-	  <option ng-repeat="theme in themes" value="{%raw%}{{theme.src}}{%endraw%}">{%raw%}{{theme.name}}{%endraw%}</option>
-	</select>
-	<label>Modes</label>
-        <select class="form-control" onchange="changeMode(this)">
-	  <option ng-repeat="mode in modes" value="{%raw%}{{mode.value}},{{mode.src}}{%endraw%}">{%raw%}{{mode.name}}{%endraw%}</option>
-        </select>
-	<label>KeyMap</label>
-        <select class="form-control" onchange="chKeyMap(this)">
-	  <option ng-repeat="key in keymaps" value="{%raw%}{{key.src}}{%endraw%}">{%raw%}{{key.name}}{%endraw%}</option>
-        </select>
-      	<form ng-submit="compose()">
-	  {{csrf}}
-      	  <label>Share this code to:</label>
-      	  <input name="email" id="emailtext" data-toggle="tooltip" data-placement="left" title="Separate with comma for multiple emails" ng-model="params.email" type="text" class="form-control mb-10" placeholder="Example@example.com">
-      	  <input  name="url" ng-model="params.url" type="hidden" class="form-control">
-      	  <button type="submit" class="btn btn-primary float-right">Send</button>
-      	</form>
+        <div class="success-message text-center text-bold"><span ng-bind="response"></span></div>
+          <label>Themes</label>
+          <select id="themeselect" class="form-control" onchange="changeTheme(this)">
+            <option ng-repeat="theme in themes" value="{%raw%}{{theme.src}}{%endraw%}">
+              {%raw%}{{theme.name}}{%endraw%}
+            </option>
+          </select>
+          <label>Modes</label>
+          <select class="form-control" onchange="changeMode(this)">
+            <option ng-repeat="mode in modes" value="{%raw%}{{mode.value}},{{mode.src}}{%endraw%}">
+              {%raw%}{{mode.name}}{%endraw%}
+            </option>
+          </select>
+          <label>KeyMap</label>
+          <select class="form-control" onchange="chKeyMap(this)">
+            <option ng-repeat="key in keymaps" value="{%raw%}{{key.src}}{%endraw%}">
+              {%raw%}{{key.name}}{%endraw%}
+            </option>
+          </select>
+          <form ng-submit="compose()">
+            {{csrf}}
+            <label>Share this code to:</label>
+            <input name="email" id="emailtext" data-toggle="tooltip" data-placement="left" title="Separate with comma for multiple emails" ng-model="params.email" type="text" class="form-control mb-10" placeholder="Example@example.com">
+            <input  name="url" ng-model="params.url" type="hidden" class="form-control">
+            <button type="submit" class="btn btn-primary float-right">Send</button>
+          </form>
       </div>
-
     </li>
   </ul>
-
-
 </nav>
 
-  <div id="preload" class="container" style="display:block"></div>
-  <div id="firepad-container"></div>
-
+<div id="preload" class="container" style="display:block"></div>
+<div id="firepad-container"></div>
 
 {%endblock%}
+
 {%block script%}
 <script src="/static/js/codeshare.js"></script>
 <script src="/static/js/dynaload.js"></script>
