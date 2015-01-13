@@ -63,12 +63,27 @@
       <script type="text/javascript" src="/static/js/canvas.js"></script>
       <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/htmlmixed/htmlmixed.min.js"></script>-->
 
+      <script type="text/javascript" src="/static/js/typed.js"></script>
+
       <!-- google Hangout extensions -->
 
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="https://apis.google.com/js/client.js"></script>
 
       <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/keymap/sublime.min.js"></script>
+      <script>
+          $(".element").typed({
+            strings: [
+              "collaborate",
+              "demonstrate",
+              "show",
+              "share"
+            ],
+            typeSpeed: 40,
+            backDelay: 1800,
+            showCursor: false
+          });
+      </script>
       {%block script%}{%endblock%}
     </content>
   </body>

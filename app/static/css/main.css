@@ -1,3 +1,13 @@
+h1 {
+    font-size: 2.6rem;
+    line-height: 1.5;
+}
+
+h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
 .form-wrap {
     max-width: 750px;
     padding: 15px;
@@ -69,16 +79,18 @@
 }
 
 .font17 {
-    font-size: 17px!important;
-    line-height: 19px!important;
+    font-size: 17px !important;
+    line-height: 19px !important;
 }
 
-.font48 {
-    font-size: 48px;
-    margin: 0 0 25px;
-    font-weight: 300;
-    font-style: normal;
-    line-height: 60px;
+.font19 {
+    font-size: 19px !important;
+    line-height: 21px !important;
+}
+
+.font45 {
+    font-size: 45px !important;
+    line-height: 50px !important;
 }
 
 .clearfix {
@@ -185,4 +197,10 @@
     z-index: 999;
     background: #333;
     border-radius: 5px 0 5px 5px;
+}
+
+.greeting .element {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    font-weight: lighter;
 }
