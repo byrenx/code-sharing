@@ -134,8 +134,6 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
             codeMirror.setOption("lineWrapping", false);
         }
     }
-    
-
 });
 
 

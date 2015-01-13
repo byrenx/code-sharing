@@ -37,23 +37,25 @@ var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
 // Initialize Firepad
 function init(theme) {
     var firepadRef = getRef(),
-        firepad;
+        firepad,
+        userId,
+        firepadUserList;
 
     // Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
-    var userId = Math.floor(Math.random() * 9999999999).toString();
-    //// Create Firepad (with rich text features and our desired userId).
+    userId = Math.floor(Math.random() * 9999999999).toString();
 
+    // Create Firepad (with rich text features and our desired userId).
     firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
         defaultText: "",
-	userId: userId
+    	userId: userId
     });
-    
 
-    //// Create FirepadUserList (with our desired userId).
-    var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
-          document.getElementById('userlist'), userId);
 
-    
+    // Create FirepadUserList (with our desired userId).
+    firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
+        document.getElementById('userlist'), userId);
+
+
     firepad.on('ready', function () {
         // Firepad is ready
         $("#preload").hide();
