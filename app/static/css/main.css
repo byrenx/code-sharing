@@ -172,6 +172,10 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
     margin-top: 70px !important;
 }
 
+.img-full {
+    width: 100%;
+}
+
 .settings {
     position: absolute;
     top: 10px;
