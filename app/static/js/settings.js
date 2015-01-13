@@ -5,34 +5,32 @@
  */
 var codeShareApp = angular.module('codeShareApp', []);
 
-codeShareApp.service('CodeRest', function($http) {
+codeShareApp.service('CodeRest', function ($http) {
     return {
-    	compose: function (params){
-    	    return $http.get('/api/code_share/compose', {params:params});
-    	}
+        compose: function (params) {
+            return $http.get('/api/code_share/compose', {params: params});
+        }
     }
 
 });
 
-codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, $location) {
+codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest, $location) {
     $scope.params = {}; // model
     $scope.params['url'] = $location.absUrl(); //$location.path(); // get current url
     $scope.paramsList = {}; // list
     $scope.params['csrf_token'] = $("input[name=csrf_token]").val();
     //alert($scope.params['csrf_token']);
-    $scope.compose = function() {
-	CodeRest.compose($scope.params)
-	    .success(function(data, status, headers, config) {
-    		if (status == 200) {
-    		    $scope.response = "Successfully shared codex!"
-    		} else if (status == 403){
-    		    $scope.response = "Invalid email!"
-    		}
-
-	    }).error(function(data, status, headers, config) {
-		    $scope.response = "Codex sharing failed!"
-	    });
-
+    $scope.compose = function () {
+        CodeRest.compose($scope.params)
+            .success(function (data, status, headers, config) {
+                if (status == 200) {
+                    $scope.response = "Successfully shared codex!";
+                } else if (status == 403) {
+                    $scope.response = "Invalid email!";
+                }
+            }).error(function (data, status, headers, config) {
+                $scope.response = "Codex sharing failed!";
+            });
     }
 
     // Preload themes
@@ -73,11 +71,11 @@ codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, 
 
     // Preload modes
     $scope.modes = [
-        { name:'Python', src: "text/x-python,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/python/python.min.js"},
-        { name:'Javascript', src: "application/javascript,https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/javascript/javascript.js"},
-        { name:'YAML', src: "text/x-yaml,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/yaml/yaml.min.js"},
-        { name:'CSS', src: "text/css,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/css/css.min.js"},
-        { name:'HTML', src:"text/html,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/htmlmixed/htmlmixed.min.js"}
+        {name: 'Python', src: "text/x-python,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/python/python.min.js"},
+        {name: 'Javascript', src: "application/javascript,https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/javascript/javascript.js"},
+        {name: 'YAML', src: "text/x-yaml,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/yaml/yaml.min.js"},
+        {name: 'CSS', src: "text/css,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/css/css.min.js"},
+        {name: 'HTML', src:"text/html,//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/htmlmixed/htmlmixed.min.js"}
     ];
 
     $scope.default_mode = $scope.modes[0];
@@ -88,44 +86,44 @@ codeShareApp.controller('SettingsController', function($scope, $http, CodeRest, 
         {name: "emacs", src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/keymap/emacs.min.js"},
         {name: "vim", src: "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/keymap/vim.min.js"}
     ];
+
     $scope.default_keymap = $scope.keymaps[0];
-    
 
-    //change mode, keymaps, themes using ng-click
-    $scope.changeTheme = function(){
-	// load the source file
-	checkloadjscssfile($scope.theme_selected['src'], "css");
-	codeMirror.setOption("theme", $scope.theme_selected['name']);
-    }
-    
-    $scope.changeMode = function(){
-	// load the source file
-	var hash = window.location.hash.replace(/#/g, '');
-	var value_n_src = new String($scope.default_mode['src']).split(",");
-	var value = value_n_src[0];
-	var src = value_n_src[1];
-	
-	// connect to firebase
-	var connect = new Firebase('https://codex-for-all.firebaseio.com'+hash);
-	userRef = connect.child("settings");
-	userRef.set({
-    	    value: value,
-    	    src: src
-	});
 
-	// load the source file
-	checkloadjscssfile(src, "js");
-	codeMirror.setOption("mode", value);
-	
+    // Change mode, keymaps, themes using ng-click
+    $scope.changeTheme = function () {
+        // load the source file
+        checkloadjscssfile($scope.theme_selected['src'], "css");
+        codeMirror.setOption("theme", $scope.theme_selected['name']);
     }
 
-    $scope.changeKey = function(){
+    $scope.changeMode = function () {
+        var hash = window.location.hash.replace(/#/g, ''),
+            value_n_src,
+            value,
+            src,
+            connect;
+        value_n_src = new String($scope.default_mode['src']).split(",");
+        value = value_n_src[0];
+        src = value_n_src[1];
 
-	checkloadjscssfile($scope.default_keymap['src'], "js");
-	codeMirror.setOption("keyMap", $scope.default_keymap['name']);
+        // connect to firebase
+        connect = new Firebase('https://codex-for-all.firebaseio.com' + hash);
+        userRef = connect.child("settings");
+        userRef.set({
+            value: value,
+            src: src
+        });
+
+        // load the source file
+        checkloadjscssfile(src, "js");
+        codeMirror.setOption("mode", value);
     }
 
-    
+    $scope.changeKey = function () {
+        checkloadjscssfile($scope.default_keymap['src'], "js");
+        codeMirror.setOption("keyMap", $scope.default_keymap['name']);
+    }
 });
 
 
