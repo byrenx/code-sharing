@@ -1,4 +1,4 @@
 cron:
 - description: daily maintenance job
-  url: '/code_share/getFire'
+  url: '/code_share/get_firebase_reference'
   schedule: every 2 minutes

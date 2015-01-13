@@ -17,7 +17,7 @@ class CodeShare(Controller):
         prefixes = ('api',)
         components = (csrf.CSRF,)
 
-    def email_check(self, email):
+    def check_email_format(self, email):
         match = re.search(
             r'[\w+-]+(?:\.[\w+-]+)*@[\w+-]+(?:\.[\w+-]+)*(?:\.[a-zA-Z]{2,4})',
             email
@@ -37,7 +37,7 @@ class CodeShare(Controller):
         pass
 
     # checks if data is 30 days old
-    def check_date(self, date):
+    def check_time_difference(self, date):
         # date should be timestamp float
         if date is not None:
             # get current date
@@ -52,28 +52,28 @@ class CodeShare(Controller):
                 return False
 
     # gets the Firebase ID to be deleted
-    def check_del_ID(self, d):
+    def get_firebase_id(self, d):
         id_key = None
         for key, value in d.iteritems():
             id_key = key
             for k, v in value.iteritems():
                 if k == "updatedAt":
-                    if self.check_date(v):
-                        self.deleteID(id_key)
+                    if self.check_time_difference(v):
+                        self.delete_firebase_data(id_key)
 
     # deletes data in Firebase by ID
-    def deleteID(self, fireID):
+    def delete_firebase_data(self, fireID):
         f = FirebaseRest(fireID)
         f.delete()
         return 200
 
     # get reference to the data (for cronjob)
     @route
-    def getFire(self):
+    def get_firebase_reference(self):
         f = FirebaseRest('')
         data = f.get()
         d = dict(data)
-        self.check_del_ID(d)
+        self.get_firebase_id(d)
         return 200
 
     # email composer for sending / sharing codex
@@ -83,7 +83,8 @@ class CodeShare(Controller):
             'url': self.request.get('url')
         }
         email = params['email']
-        if self.email_check(email):
+
+        if self.check_email_format(email):
             mail.send_mail(
                 sender="codex.share@gmail.com",
                 to=params['email'].lower(),
