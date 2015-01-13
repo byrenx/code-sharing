@@ -124,6 +124,16 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
         checkloadjscssfile($scope.default_keymap['src'], "js");
         codeMirror.setOption("keyMap", $scope.default_keymap['name']);
     }
+
+    $scope.wordwrap = false;
+
+    $scope.toggleWrapping = function () {
+        if ($scope.wordwrap) {
+            codeMirror.setOption("lineWrapping", true);
+        } else {
+            codeMirror.setOption("lineWrapping", false);
+        }
+    }
 });
 
 
@@ -142,12 +152,3 @@ $(function () {
     $('#pop_hover').click();
 
 });
-
-function toggleWrapping(x) {
-    if(x.checked) {
-        codeMirror.setOption("lineWrapping", true);
-    }
-    else {
-        codeMirror.setOption("lineWrapping", false);
-    }
-}
