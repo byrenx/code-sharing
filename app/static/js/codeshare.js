@@ -1,20 +1,16 @@
-//type.js animation for index page
+// type.js animation for index page
 $(".element").typed({
     strings: [
+        "BROADCAST",
         "COLLABORATE",
         "DEMONSTRATE",
         "SHOW",
-        "SHARE",
-	"BROADCAST"
+        "SHARE"
     ],
     typeSpeed: 70,
-            backDelay: 1800,
+    backDelay: 1800,
     loop: true
 });
-
-
-
-
 
 $(".dropdown-toggle").click(function (e) {
     e.stopPropagation();

@@ -75,7 +75,7 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
 }
 
 .text-bold {
-    text-transform: bold !important;
+    font-weight: bold !important;
 }
 
 .font17 {
