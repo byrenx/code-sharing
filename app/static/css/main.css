@@ -205,7 +205,7 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
     font-weight: lighter;
 }
 
-.typed-cursor{
+.typed-cursor {
     opacity: 1;
     font-weight: 100;
     -webkit-animation: blink 0.7s infinite;
