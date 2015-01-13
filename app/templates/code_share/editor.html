@@ -22,6 +22,7 @@
           <select id="id_modeselect" class="form-control" ng-change="changeMode()" ng-model="default_mode" ng-options="mode.name for mode in modes track by mode.src"></select>
           <label>KeyMap</label>
           <select class="form-control" ng-change="changeKey()" ng-model="default_keymap" ng-options="keymap.name for keymap in keymaps track by keymap.src"></select>
+          <input class="form-control" onClick="toggleWrapping(this);" type="checkbox" />Wordwrap
           <form ng-submit="compose()">
             {{csrf}}
             <label>Share this code to:</label>

@@ -142,3 +142,12 @@ $(function () {
     $('#pop_hover').click();
 
 });
+
+function toggleWrapping(x) {
+    if(x.checked) {
+        codeMirror.setOption("lineWrapping", true);
+    }
+    else {
+        codeMirror.setOption("lineWrapping", false);
+    }
+}
