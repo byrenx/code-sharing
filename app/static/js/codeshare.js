@@ -90,9 +90,11 @@ function firebasemode() {
         // console.log("src:" + changedPost.src);
         // console.log("value:" + changedPost.value);
         // var c = changedPost;
-        checkloadjscssfile(changedPost.src, "js");
-        codeMirror.setOption("mode", changedPost.value);
-        $("#id_modeselect").val(changedPost.value + "," + changedPost.src);
+	if (changedPost.src != null && changedPost.value != null){
+            checkloadjscssfile(changedPost.src, "js");
+            codeMirror.setOption("mode", changedPost.value);
+            $("#id_modeselect").val(changedPost.value + "," + changedPost.src);
+	}
     });
 
 }
