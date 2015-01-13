@@ -177,7 +177,8 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
 }
 
 .img-full {
-    width: 100%;
+    width: 65%;
+    max-width: 80%;
 }
 
 .settings {
