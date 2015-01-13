@@ -1,3 +1,21 @@
+//type.js animation for index page
+$(".element").typed({
+    strings: [
+        "COLLABORATE",
+        "DEMONSTRATE",
+        "SHOW",
+        "SHARE",
+	"BROADCAST"
+    ],
+    typeSpeed: 70,
+            backDelay: 1800,
+    loop: true
+});
+
+
+
+
+
 $(".dropdown-toggle").click(function (e) {
     e.stopPropagation();
     $(".dropdown").slideToggle("slow", function () {});
