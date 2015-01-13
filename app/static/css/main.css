@@ -164,6 +164,10 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
     margin-top: 20px !important;
 }
 
+.mt-30 {
+    margin-top: 30px !important;
+}
+
 .mt-50 {
     margin-top: 50px !important;
 }
