@@ -6,13 +6,18 @@
       <button class="g-hangout" data-render="createhangout"></button>
     </li>
     <li class="text-right">
+      <a id="locker" ng-click="lockCode()" ng-model="default_lock" ng-controller="SettingsController" rel="nofollow" class="btn btn-lg btn-gray mb-10" data-toggle="tooltip" data-placement="left" title="lock/unlock this codex">
+        <i id="lockstat" class="fa fa-lock text-white"></i>
+      </a>
+    </li>
+    <li class="text-right">
       <a href="/codex" id="btn_new" target="_blank" rel="nofollow" class="btn btn-lg btn-gray mb-10" data-toggle="tooltip" data-placement="left" title="Create new codex">
-        <i class="glyphicon glyphicon-plus text-white"></i>
+        <i class="fa fa-plus text-white"></i>
       </a>
     </li>
     <li class="text-right">
       <button id="btn_sett" type="button" class="dropdown-toggle btn btn-lg btn-gray" data-toggle="tooltip" data-placement="left" title="Settings">
-        <i class="glyphicon glyphicon-cog text-white"></i>
+        <i class="fa fa-cogs text-white"></i>
       </button>
       <div class="dropdown" style="display: none; position: absolute;" ng-controller="SettingsController">
         <div class="success-message text-center text-bold"><span ng-bind="response"></span></div>

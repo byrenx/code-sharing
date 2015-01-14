@@ -134,6 +134,69 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
             codeMirror.setOption("lineWrapping", false);
         }
     }
+
+
+
+    $scope.default_lock = true;    
+    // Applies lock/unlock functionality for codemirror to other collaborators as well
+    $scope.lockinit =  function () {
+       var hash = window.location.hash.replace(/#/g, '');
+       connect = new Firebase('https://codex-for-all.firebaseio.com' + hash + '/settings');
+       
+       connect.on("value", function (snapshot) {
+           var changedPost = snapshot.val();
+        // console.log("src:" + changedPost.src);
+           // console.log("value:" + changedPost.value);
+           // var c = changedPost;
+	   if (changedPost.lock != null){
+
+		if(changedPost.lock == "true"){
+		    $scope.default_lock = true;    
+		    codeMirror.setOption("readOnly", changedPost.lock);
+		}else{
+		    $scope.default_lock = false;    
+		    codeMirror.setOption("readOnly", changedPost.lock);
+		}
+	       
+	   }
+       });
+
+   }
+
+
+
+
+    //lock
+
+    $scope.lockCode = function () {
+
+	var bool;
+        if ($scope.default_lock) {
+	    $("#lockstat").removeClass("fa-lock");
+	    $("#lockstat").addClass("fa-unlock");
+	    $scope.default_lock = false;
+	    bool = false;
+
+        } else {
+	    $("#lockstat").removeClass("fa-unlock");
+	    $("#lockstat").addClass("fa-lock");
+	    bool = true;
+	    $scope.default_lock = true;
+
+
+        }
+	// connect to firebase
+	var hash = window.location.hash.replace(/#/g, '');
+        connect = new Firebase('https://codex-for-all.firebaseio.com' + hash);
+        userRef = connect.child("settings");
+        userRef.set({
+            lock: bool
+        });
+    }
+
+   
+    $scope.lockinit();
+
 });
 
 

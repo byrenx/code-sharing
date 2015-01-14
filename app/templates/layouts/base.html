@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="codeShareApp">
+<html lang="en" ng-app="codeShareApp" ng-init="lockinit()">
   <head>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
     <meta content="Share code snippets and collaborate with developers with this free code sharing tool." name="description"></meta>
@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/theme/elegant.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/theme/midnight.min.css">
     <link href="//cdn.firebase.com/libs/firepad/1.0.0/firepad.css" rel="stylesheet"></link>
+    <!-- font awesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body class="bg-gray">

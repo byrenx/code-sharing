@@ -31,6 +31,7 @@ var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
     theme : '3024-day',
     keyMap: 'sublime',
     mode: 'python',
+    readOnly: false,
     crudeMeasuringFrom: 100
 });
 
@@ -127,6 +128,10 @@ function firebasemode() {
 
 }
 
+
+
+
 // Fire initialization of Firepad
 init('default');
 firebasemode();
+
