@@ -285,3 +285,8 @@ h1.h-thin, h2.h-thin, h3.h-thin, h4.h-thin, h5.h-thin, h6.h-thin {
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.tooltip-inner {
+    white-space: pre-wrap;
+    max-width: none;
+}

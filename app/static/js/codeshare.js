@@ -51,7 +51,6 @@ function init(theme) {
     	userId: userId
     });
 
-
     // Create FirepadUserList (with our desired userId).
     firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
         document.getElementById('userlist'), userId);
@@ -125,13 +124,8 @@ function firebasemode() {
             $("#id_modeselect").val(changedPost.value + "," + changedPost.src);
 	    }
     });
-
 }
-
-
-
 
 // Fire initialization of Firepad
 init('default');
 firebasemode();
-

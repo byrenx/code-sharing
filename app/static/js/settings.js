@@ -1,6 +1,6 @@
 /**
  * Angular module responsible for sharing the code using the url via email;
- * Displays the list of themes, keymaps and modes for the app's settings.
+ * Displays the list of themes, keymaps, modes and other settings needed for the app.
  *
  */
 var codeShareApp = angular.module('codeShareApp', []);
@@ -90,7 +90,7 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
     $scope.default_keymap = $scope.keymaps[0];
 
 
-    // Change mode, keymaps, themes using ng-click
+    // Change mode, keymaps, themes, enable wordwrap and code lock using ng-click
     $scope.changeTheme = function () {
         // load the source file
         checkloadjscssfile($scope.theme_selected['src'], "css");
@@ -135,58 +135,48 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
         }
     }
 
-
-
-    $scope.default_lock = true;    
-    // Applies lock/unlock functionality for codemirror to other collaborators as well
+    $scope.default_lock = true;
+    // Applies lock/unlock functionality (others may or may not be able to edit if locked)
     $scope.lockinit =  function () {
-       var hash = window.location.hash.replace(/#/g, '');
+       var hash = window.location.hash.replace(/#/g, ''),
+           changedPost;
        connect = new Firebase('https://codex-for-all.firebaseio.com' + hash + '/settings');
-       
+
        connect.on("value", function (snapshot) {
-           var changedPost = snapshot.val();
-        // console.log("src:" + changedPost.src);
-           // console.log("value:" + changedPost.value);
-           // var c = changedPost;
-	   if (changedPost.lock != null){
-
-		if(changedPost.lock == "true"){
-		    $scope.default_lock = true;    
-		    codeMirror.setOption("readOnly", changedPost.lock);
-		}else{
-		    $scope.default_lock = false;    
-		    codeMirror.setOption("readOnly", changedPost.lock);
-		}
-	       
-	   }
+           changedPost = snapshot.val();
+           if (changedPost.lock != null) {
+               if (changedPost.lock == "true") {
+		           $scope.default_lock = true;
+        		   codeMirror.setOption("readOnly", changedPost.lock);
+        	   } else {
+                   $scope.default_lock = false;
+                   codeMirror.setOption("readOnly", changedPost.lock);
+               }
+           }
        });
-
    }
 
-
-
-
-    //lock
-
+    // lock code
     $scope.lockCode = function () {
+        var bool,
+            hash,
+            connect,
+            userRef;
 
-	var bool;
         if ($scope.default_lock) {
-	    $("#lockstat").removeClass("fa-lock");
-	    $("#lockstat").addClass("fa-unlock");
-	    $scope.default_lock = false;
-	    bool = false;
-
+            $("#lockstat").removeClass("fa-lock");
+            $("#lockstat").addClass("fa-unlock");
+            $scope.default_lock = false;
+             bool = false;
         } else {
-	    $("#lockstat").removeClass("fa-unlock");
-	    $("#lockstat").addClass("fa-lock");
-	    bool = true;
-	    $scope.default_lock = true;
-
-
+            $("#lockstat").removeClass("fa-unlock");
+            $("#lockstat").addClass("fa-lock");
+            bool = true;
+            $scope.default_lock = true;
         }
-	// connect to firebase
-	var hash = window.location.hash.replace(/#/g, '');
+
+        // connect to firebase
+        hash = window.location.hash.replace(/#/g, '');
         connect = new Firebase('https://codex-for-all.firebaseio.com' + hash);
         userRef = connect.child("settings");
         userRef.set({
@@ -194,9 +184,7 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
         });
     }
 
-   
     $scope.lockinit();
-
 });
 
 
