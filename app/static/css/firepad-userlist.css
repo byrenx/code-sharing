@@ -1,7 +1,7 @@
 .firepad-userlist {
   /* default height */
-  height: 400px;
-  min-width: 175px;
+  height: auto;
+  min-width: 165px;
 
   background: #ebebeb; /* Old browsers */
   background: -moz-linear-gradient(left, #ebebeb 0%, #eaeaea 93%, #d9d9d9 100%); /* FF3.6+ */
@@ -20,17 +20,22 @@
 }
 
 .firepad-userlist-heading {
-  margin: 20px 15px 0;
   font-size: 12px;
   font-weight: bold;
   border-bottom: 2px solid #c9c9c9;
+  height: 22px;
+  padding: 3px 0px 0px 5px;
+}
+
+.firepad-userlist-heading span {
+  margin-top: 5px;
 }
 
 .firepad-userlist-users {
   position: absolute;
-  left: 15px;
-  right: 15px;
-  top: 38px;
+  left: 5px;
+  right: 5px;
+  top: 28px;
   bottom: 10px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -39,9 +44,10 @@
 .firepad-userlist-user {
   position: relative;
   margin: 3px 0;
-  height: 32px;
+  height: 36px;
   border-bottom: 1px solid #c9c9c9;
   padding-bottom: 5px;
+  color: #FFF
 }
 
 .firepad-userlist-color-indicator {
