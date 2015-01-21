@@ -15,6 +15,7 @@ codeShareApp.service('CodeRest', function ($http) {
 });
 
 codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest, $location) {
+
     $scope.params = {}; // model
     $scope.params['url'] = $location.absUrl(); //$location.path(); // get current url
     $scope.paramsList = {}; // list
@@ -135,7 +136,7 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
         }
     }
 
-    $scope.default_lock = true;
+    //$scope.default_lock = true;
     // Applies lock/unlock functionality (others may or may not be able to edit if locked)
     $scope.lockinit =  function () {
        var hash = window.location.hash.replace(/#/g, ''),
@@ -145,18 +146,19 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
        connect.on("value", function (snapshot) {
            changedPost = snapshot.val();
            if (changedPost.lock != null) {
-               if (changedPost.lock == "true") {
-		           $scope.default_lock = true;
-        		   codeMirror.setOption("readOnly", changedPost.lock);
-        	   } else {
-                   $scope.default_lock = false;
-                   codeMirror.setOption("readOnly", changedPost.lock);
+               if (changedPost.lock == 1) {
+        	   codeMirror.setOption("readOnly", true);
+		   $("#lockstat").removeClass().addClass("fa fa-lock fa-lg text-red");
+               }else if(changedPost.lock == 2){
+                   codeMirror.setOption("readOnly", false);
+		       $("#lockstat").removeClass().addClass("fa fa-unlock fa-lg text-white");
                }
            }
        });
    }
-
-    // lock code
+    //initialize locking 
+    $scope.lockinit();
+    // lock code trigger
     $scope.lockCode = function () {
         var bool,
             hash,
@@ -164,14 +166,12 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
             userRef;
 
         if ($scope.default_lock) {
-            $("#lockstat").removeClass("fa-lock");
-            $("#lockstat").addClass("fa-unlock");
+
             $scope.default_lock = false;
-             bool = false;
+             bool = 1;
         } else {
-            $("#lockstat").removeClass("fa-unlock");
-            $("#lockstat").addClass("fa-lock");
-            bool = true;
+
+            bool = 2;
             $scope.default_lock = true;
         }
 
@@ -184,7 +184,7 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
         });
     }
 
-    $scope.lockinit();
+
 });
 
 
