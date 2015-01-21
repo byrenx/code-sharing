@@ -151,9 +151,11 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
 		   $("#lockstat").removeClass().addClass("fa fa-lock fa-lg text-red");
                }else if(changedPost.lock == 2){
                    codeMirror.setOption("readOnly", false);
-		       $("#lockstat").removeClass().addClass("fa fa-unlock fa-lg text-white");
+		       $("#lockstat").removeClass().addClass("fa fa-unlock-alt fa-lg text-white");
                }
-           }
+           }else{
+	       
+	   }
        });
    }
     //initialize locking 
