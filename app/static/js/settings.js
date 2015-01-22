@@ -154,7 +154,7 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
 		       $("#lockstat").removeClass().addClass("fa fa-unlock-alt fa-lg text-white");
                }
            }else{
-	       
+	       $scope.default_lock = false;
 	   }
        });
    }
@@ -168,7 +168,6 @@ codeShareApp.controller('SettingsController', function ($scope, $http, CodeRest,
             userRef;
 
         if ($scope.default_lock) {
-
             $scope.default_lock = false;
              bool = 1;
         } else {
